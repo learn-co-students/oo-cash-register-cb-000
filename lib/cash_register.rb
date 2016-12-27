@@ -30,11 +30,10 @@ class CashRegister
       quotient = @discount.to_f / 100.to_f #.to_f is to avoid a nil when the discount or quotient returns with a decimal place
       total_discount = self.total * quotient
       self.total = self.total - total_discount
-      "After the discount, the total comes to $#{@total.to_i}."
     end
   end
 
   def void_last_transaction
     self.total = self.total - self.last_transaction
-  end 
+  end
 end
