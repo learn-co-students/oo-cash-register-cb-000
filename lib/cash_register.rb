@@ -19,7 +19,7 @@ class CashRegister
 
   def apply_discount
     if discount != 0
-      #apparrently you need to convert to float before conversion then back into int
+      #need to convert to float before conversion then back into int
       self.total = (total * ((100.0 - discount.to_f)/100)).to_i
       "After the discount, the total comes to $#{self.total}."
     else
