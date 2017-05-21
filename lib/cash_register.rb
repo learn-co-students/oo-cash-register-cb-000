@@ -14,7 +14,7 @@ class CashRegister
       @total += price
       @items << item
       @total
-      @last_item = {item: item, price: price}
+      @last_item = {item: item, total_charge: price * quantity}
     end
   end
 
@@ -25,7 +25,7 @@ class CashRegister
   end
 
   def void_last_transaction
-    @total -= @last_item[:price]
+    @total -= @last_item[:total_charge]
   end
 
 end
