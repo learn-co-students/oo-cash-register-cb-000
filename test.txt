@@ -1,0 +1,106 @@
+
+CashRegister
+  ::new
+    sets an instance variable @total on initialization to zero
+    optionally takes an employee discount on initialization
+  #total
+    returns the current total
+  #add_item
+    accepts a title and a price and increases the total (FAILED - 1)
+    also accepts an optional quantity (FAILED - 2)
+    doesn't forget about the previous total (FAILED - 3)
+  #apply_discount
+    the cash register was initialized with an employee discount
+      applies the discount to the total price (FAILED - 4)
+      returns success message with updated total (FAILED - 5)
+      reduces the total (FAILED - 6)
+    the cash register was not initialized with an employee discount
+      returns a string error message that there is no discount to apply (FAILED - 7)
+  #items
+    returns an array containing all items that have been added (FAILED - 8)
+  #void_last_transaction
+    subtracts the last transaction from the total (FAILED - 9)
+
+Failures:
+
+  1) CashRegister #add_item accepts a title and a price and increases the total
+     Failure/Error: expect{cash_register.add_item("eggs", 0.98)}.to change{cash_register.total}.by(0.98)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001ae3b10 @total=0, @discount=0>
+     # ./spec/cash_register_spec.rb:24:in `block (4 levels) in <top (required)>'
+     # ./spec/cash_register_spec.rb:24:in `block (3 levels) in <top (required)>'
+
+  2) CashRegister #add_item also accepts an optional quantity
+     Failure/Error: expect{cash_register.add_item("book", 5.00, 3)}.to change{cash_register.total}.by(15.00)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001acfcc8 @total=0, @discount=0>
+     # ./spec/cash_register_spec.rb:28:in `block (4 levels) in <top (required)>'
+     # ./spec/cash_register_spec.rb:28:in `block (3 levels) in <top (required)>'
+
+  3) CashRegister #add_item doesn't forget about the previous total
+     Failure/Error: cash_register.add_item("Lucky Charms", 4.5)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001acd658 @total=0, @discount=0>
+     # ./spec/cash_register_spec.rb:32:in `block (3 levels) in <top (required)>'
+
+  4) CashRegister #apply_discount the cash register was initialized with an employee discount applies the discount to the total price
+     Failure/Error: cash_register_with_discount.add_item("macbook air", 1000)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001ac91c0 @total=0, @discount=20>
+     # ./spec/cash_register_spec.rb:44:in `block (4 levels) in <top (required)>'
+
+  5) CashRegister #apply_discount the cash register was initialized with an employee discount returns success message with updated total
+     Failure/Error: cash_register_with_discount.add_item("macbook air", 1000)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001ac7618 @total=0, @discount=20>
+     # ./spec/cash_register_spec.rb:50:in `block (4 levels) in <top (required)>'
+
+  6) CashRegister #apply_discount the cash register was initialized with an employee discount reduces the total
+     Failure/Error: cash_register_with_discount.add_item("macbook air", 1000)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001ac57c8 @total=0, @discount=20>
+     # ./spec/cash_register_spec.rb:56:in `block (4 levels) in <top (required)>'
+
+  7) CashRegister #apply_discount the cash register was not initialized with an employee discount returns a string error message that there is no discount to apply
+     Failure/Error: expect(cash_register.apply_discount).to eq("There is no discount to apply.")
+
+     NoMethodError:
+       undefined method `apply_discount' for #<CashRegister:0x00000001ac0f98 @total=0, @discount=0>
+       Did you mean?  discount
+     # ./spec/cash_register_spec.rb:63:in `block (4 levels) in <top (required)>'
+
+  8) CashRegister #items returns an array containing all items that have been added
+     Failure/Error: new_register.add_item("eggs", 1.99)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001abd6b8 @total=0, @discount=0>
+     # ./spec/cash_register_spec.rb:71:in `block (3 levels) in <top (required)>'
+
+  9) CashRegister #void_last_transaction subtracts the last transaction from the total
+     Failure/Error: cash_register.add_item("tomato", 1.76)
+
+     NoMethodError:
+       undefined method `add_item' for #<CashRegister:0x00000001aa5ea0 @total=0, @discount=0>
+     # ./spec/cash_register_spec.rb:79:in `block (3 levels) in <top (required)>'
+
+Finished in 0.01297 seconds (files took 0.23294 seconds to load)
+12 examples, 9 failures
+
+Failed examples:
+
+rspec ./spec/cash_register_spec.rb:23 # CashRegister #add_item accepts a title and a price and increases the total
+rspec ./spec/cash_register_spec.rb:27 # CashRegister #add_item also accepts an optional quantity
+rspec ./spec/cash_register_spec.rb:31 # CashRegister #add_item doesn't forget about the previous total
+rspec ./spec/cash_register_spec.rb:43 # CashRegister #apply_discount the cash register was initialized with an employee discount applies the discount to the total price
+rspec ./spec/cash_register_spec.rb:49 # CashRegister #apply_discount the cash register was initialized with an employee discount returns success message with updated total
+rspec ./spec/cash_register_spec.rb:54 # CashRegister #apply_discount the cash register was initialized with an employee discount reduces the total
+rspec ./spec/cash_register_spec.rb:62 # CashRegister #apply_discount the cash register was not initialized with an employee discount returns a string error message that there is no discount to apply
+rspec ./spec/cash_register_spec.rb:69 # CashRegister #items returns an array containing all items that have been added
+rspec ./spec/cash_register_spec.rb:78 # CashRegister #void_last_transaction subtracts the last transaction from the total
+
