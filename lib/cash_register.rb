@@ -6,7 +6,7 @@ class CashRegister
   def initialize(discount=0)
     @total = 0 # start with a total of 0
     @discount = discount
-    @items = []
+    @items = [] # start with empty array
   end
 
 
@@ -22,6 +22,20 @@ class CashRegister
   def add_item(item, price, quantity=1)
     # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
     self.total += price * quantity # increment the total by the result of (price X quantity)
+
+
+    quantity.times do
+      @items << item # add item to array 'quantity' # of times
+    end
+=begin WHAT NOT TO DO (when adding item to items array)
+    @items << item
+      expected: ["eggs", "tomato", "tomato", "tomato"]
+      got: ["eggs", "tomato"]
+
+    @items << item * quantity
+      expected: ["eggs", "tomato", "tomato", "tomato"]
+      got: ["eggs", "tomatotomatotomato"]
+=end
   end
 
 
@@ -37,7 +51,7 @@ class CashRegister
       self.total = (@total * (1 - @discount)).to_i # convert back to integer so result is $800 not $800.0
       "After the discount, the total comes to $#{self.total}."
         # puts @total
-        # puts @discount.to_f / 100 
+        # puts @discount.to_f / 100
         # puts 1 - (@discount.to_f / 100)
     else
       "There is no discount to apply."
@@ -47,6 +61,7 @@ class CashRegister
 
   # returns an array containing all items that have been added
   def items
+    @items
   end
 
   # subtracts the last transaction from the total
