@@ -4,20 +4,24 @@ class CashRegister
   # sets an instance variable @total on initialization to zero
   # optionally takes an employee discount on initialization
   def initialize(discount=0)
-    @total = 0
+    @total = 0 # start with a total of 0
     @discount = discount
+    @items = []
   end
 
 
   # returns the current total
   def total
+    @total
   end
 
 
   # accepts a title and a price and increases the total
   # also accepts an optional quantity
   # doesn't forget about the previous total
-  def add_item
+  def add_item(title, price, quantity=1)
+    # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
+    self.total += price * quantity # increment the total by the result of (price X quantity)
   end
 
 
