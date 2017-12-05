@@ -23,19 +23,9 @@ class CashRegister
     # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
     self.total += price * quantity # increment the total by the result of (price X quantity)
 
-
     quantity.times do
-      @items << item # add item to array 'quantity' # of times
+      @items << item # add item to array 'quantity' # of times ***see note below
     end
-=begin WHAT NOT TO DO (when adding item to items array)
-    @items << item
-      expected: ["eggs", "tomato", "tomato", "tomato"]
-      got: ["eggs", "tomato"]
-
-    @items << item * quantity
-      expected: ["eggs", "tomato", "tomato", "tomato"]
-      got: ["eggs", "tomatotomatotomato"]
-=end
   end
 
 
@@ -68,3 +58,14 @@ class CashRegister
   def void_last_transaction
   end
 end
+
+
+=begin #add_item WHAT NOT TO DO (when adding item to items array)
+  @items << item
+    expected: ["eggs", "tomato", "tomato", "tomato"]
+    got: ["eggs", "tomato"]
+
+  @items << item * quantity
+    expected: ["eggs", "tomato", "tomato", "tomato"]
+    got: ["eggs", "tomatotomatotomato"]
+=end
