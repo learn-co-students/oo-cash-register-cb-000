@@ -32,6 +32,16 @@ class CashRegister
   # if the cash register was not initialized with an employee discount
     # returns a string error message that there is no discount to apply
   def apply_discount
+    if @discount != 0
+      @discount = @discount.to_f / 100 # discount is 20%, so must convert to float before dividing by 100 to get percent
+      self.total = (@total * (1 - @discount)).to_i # convert back to integer so result is $800 not $800.0
+      "After the discount, the total comes to $#{self.total}."
+        # puts @total
+        # puts @discount.to_f / 100 
+        # puts 1 - (@discount.to_f / 100)
+    else
+      "There is no discount to apply."
+    end
   end
 
 
