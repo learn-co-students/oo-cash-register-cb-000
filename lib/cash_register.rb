@@ -1,5 +1,5 @@
 class CashRegister
-  attr_accessor :items, :discount, :total
+  attr_accessor :items, :discount, :total, :last_transaction
 
   # sets an instance variable @total on initialization to zero
   # optionally takes an employee discount on initialization
@@ -22,10 +22,12 @@ class CashRegister
   def add_item(item, price, quantity=1)
     # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
     self.total += price * quantity # increment the total by the result of (price X quantity)
-
+    puts self.total
     quantity.times do
       @items << item # add item to array 'quantity' # of times ***see note below
     end
+    @last_transaction = price * quantity
+    puts @last_transaction
   end
 
 
