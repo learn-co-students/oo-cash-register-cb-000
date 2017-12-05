@@ -22,12 +22,14 @@ class CashRegister
   def add_item(item, price, quantity=1)
     # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
     self.total += price * quantity # increment the total by the result of (price X quantity)
-    puts self.total
+      # puts "total: #{self.total}"
+
     quantity.times do
       @items << item # add item to array 'quantity' # of times ***see note below
     end
-    @last_transaction = price * quantity
-    puts @last_transaction
+
+    @last_transaction = price * quantity # keep track of the last transaction amount added
+      # puts "last transaction: #{@last_transaction}"
   end
 
 
@@ -58,6 +60,7 @@ class CashRegister
 
   # subtracts the last transaction from the total
   def void_last_transaction
+    self.total = self.total - self.last_transaction
   end
 end
 
