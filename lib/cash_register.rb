@@ -3,6 +3,10 @@ class CashRegister
 
   # sets an instance variable @total on initialization to zero
   # optionally takes an employee discount on initialization
+  def initialize(discount=0)
+    @total = 0
+    @discount = discount
+  end
 
 
   # returns the current total
