@@ -19,7 +19,7 @@ class CashRegister
   # accepts a title and a price and increases the total
   # also accepts an optional quantity
   # doesn't forget about the previous total
-  def add_item(title, price, quantity=1)
+  def add_item(item, price, quantity=1)
     # to call an instance method inside another instance method, use the self keyword to refer to the instance on which you are operating
     self.total += price * quantity # increment the total by the result of (price X quantity)
   end
