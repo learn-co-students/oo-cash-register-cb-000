@@ -1,8 +1,8 @@
-require 'pry'
 class CashRegister
   attr_reader :items, :prices, :discount, :set_total
 
   def initialize(discount = 0)
+    @discount_applied = false
     @discount = discount
     @items = []
     @prices = {}
@@ -27,6 +27,7 @@ class CashRegister
         @total += @prices[item]
       end
     end
+    @total = @total - (@total * (@discount / 100.00)) if @discount_applied == true
     @total
   end
 
@@ -35,11 +36,11 @@ class CashRegister
   end
 
   def apply_discount
+    @discount_applied = true
     if @discount <= 0
-      puts "There is no discount to apply."
+      return "There is no discount to apply."
     else
-      @total = @total - (@total * (@discount / 100))
-      puts "After the discount, the total comes to #{@total}."
+      return "After the discount, the total comes to $#{(self.total).to_i}."
     end
   end
 
@@ -50,9 +51,12 @@ class CashRegister
 end
 
 =begin
-cash_register = CashRegister.new
+cash_register = CashRegister.new(20)
 cash_register.add_item("Lucky Charms", 4.5)
 cash_register.total
 cash_register.add_item("Ritz Crackers", 5.0)
 cash_register.total
+cash_register.add_item("macbook air", 1000)
+cash_register.apply_discount
+
 =end
