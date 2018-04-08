@@ -1,5 +1,3 @@
-require "pry"
-
 class CashRegister
   attr_accessor :total, :discount, :items, :previous_total
 
@@ -28,6 +26,3 @@ class CashRegister
     @total = @previous_total
   end
 end
-
-item = CashRegister.new
-item.add_item("eggs", 0.98)
