@@ -1,54 +1,69 @@
+# class CashRegister
+#
+#   attr_accessor :items, :discount, :total, :last_transaction
+#
+#   def initialize(discount=0)
+#     @total = 0
+#     @discount = discount
+#     @items = []
+#   end
+#
+#   def add_item(title, amount, quantity=1)
+#     self.total += amount * quantity
+#     quantity.times do
+#       items << title
+#     end
+#     self.last_transaction = amount * quantity
+#   end
+#
+#   def apply_discount
+#     if discount != 0
+#       self.total = (total * ((100.0 - discount.to_f)/100)).to_i
+#       "After the discount, the total comes to $#{self.total}."
+#     else
+#       "There is no discount to apply."
+#     end
+#   end
+#
+#   def void_last_transaction
+#     self.total = self.total - self.last_transaction
+#   end
+# end
+
+
 class CashRegister
-  attr_accessor :total, :employee_discount, :items
+  attr_accessor :total, :discount, :items, :last_item
 
-
-
-  def initialize(employee_discount = nil)
+  def initialize(discount = 0)
     @total = 0
-    @employee_discount = employee_discount
+    @discount = discount
     @items = []
-    @purchases = {}
   end
 
-  def total
-    @total
-  end
 
-  def discount
-    @employee_discount
-  end
-
-  def add_item(title, price, quantity = nil)
-    @purchases[title]=0
-    if quantity == nil
-    @items.push(title)
-    @total += price
-    else
-      @total += (price * quantity)
-      i = 0
-      while i < quantity
-        @items.push(title)
-        i += 1
-      end
+  def add_item(title, price, quantity = 1)
+    self.total += (price * quantity)
+    quantity.times do
+      self.items.push(title)
     end
-    @purchases[title] += price
+    self.last_item = (price * quantity)
   end
 
   def apply_discount
-    if @employee_discount != nil
-    @total -= @employee_discount
-    "After the discount, the total comes to $#{@total}."
+    if discount != 0
+    # self.total -= self.discount
+    self.total = (total * ((100.0 - discount.to_f)/100)).to_i
+    "After the discount, the total comes to $#{self.total}."
     else
       "There is no discount to apply."
     end
   end
 
-  def items
-    @items
-  end
+
+
 
   def void_last_transaction
-    @total -= @purchases.values.last
+    self.total -= self.last_item
 
   end
 end
@@ -63,6 +78,8 @@ end
 # cash_register_with_discount = CashRegister.new(200)
 #
 # cash_register_with_discount.add_item("macbook air", 1000)
+# cash.add_item("elektron analog four", 700)
+
 # cash_register_with_discount.items
 #
 # cash_register_with_discount.apply_discount
