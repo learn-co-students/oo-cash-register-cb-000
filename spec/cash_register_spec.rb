@@ -1,6 +1,6 @@
 describe 'CashRegister' do
   let(:cash_register) { CashRegister.new }
-  let(:cash_register_with_discount) { CashRegister.new(20) }
+  let(:cash_register_with_discount) { CashRegister.new(200) }
 
   describe '::new' do
     it 'sets an instance variable @total on initialization to zero' do
@@ -8,7 +8,7 @@ describe 'CashRegister' do
     end
 
     it 'optionally takes an employee discount on initialization' do
-      expect(cash_register_with_discount.discount).to eq(20)
+      expect(cash_register_with_discount.discount).to eq(200)
     end
   end
 
