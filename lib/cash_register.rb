@@ -3,7 +3,7 @@ class CashRegister
 
 #sets an instance variable @total on iniitalization to zero
 #optionally takes an employee discount on initialization
-  def initialize(discount=0)
+  def initialize(discount = 0)
     @discount = discount
     @total = 0
     @items = []
@@ -18,10 +18,7 @@ class CashRegister
       quantity.times do
         items << title
       end
-
     self.last_transaction = price * quantity
-
-
   end
 
 #apply_discount method:
@@ -31,7 +28,7 @@ class CashRegister
 
   def apply_discount
     if discount > 0
-      self.total = (total *(100 - discount))/100
+      self.total = (total * (100 - discount))/100
       "After the discount, the total comes to $#{self.total}."
     else
       "There is no discount to apply."
